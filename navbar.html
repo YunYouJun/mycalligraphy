@@ -1,0 +1,181 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid"> 
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      <a class="navbar-brand" href="#"><img src="/mycalligraphy/img/logo.png" height="23"></a></div>
+
+    <div class="collapse navbar-collapse" id="defaultNavbar1"  style="font-size:large;">
+      <ul class="nav navbar-nav">
+        <li id="index"><a href="/mycalligraphy/index.php" title="首页"><span class="glyphicon glyphicon-home" title="主页"></span></a></li>
+        <li id="character"><a href="/mycalligraphy/character.php" title="汉字检索"  >汉字检索</a></li>
+        <li id="write"><a href="/mycalligraphy/write" title="汉字书写">汉字书写</a></li>
+        <li id="forum"><a href="/mycalligraphy/forum.php" title="书法论坛">书法论坛</a></li>
+        <li class="dropdown" id="mylearn"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" title="书法学习">书法学习<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu" style="font-size: large;">
+            <li><a href="#">新作学习</a></li>
+            <li><a href="#">继续学习</a></li>
+            <li><a href="/mycalligraphy/examine.php">我的考核</a></li>
+            <li><a href="/mycalligraphy/scoreboard.php">排行榜</a></li>
+          </ul>
+        </li>
+        <li id="conversion"><a href="/mycalligraphy/conversion.php" title="书法转换">书法转换</a></li>
+
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control navbar-inverse" placeholder="搜索文字" style="background-color:rgba(0,0,0,0.5);">
+        </div>
+        <button type="submit" class="btn btn-inverse">搜索</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a data-toggle="modal" data-target="#loginModal">登录</a></li>
+        <li><a data-toggle="modal" data-target="#loginModal">注册</a></li>
+
+        <li class="dropdown" id="user"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" title="个人中心">个人中心<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu" style="font-size: large;">
+            <li><a href="/mycalligraphy/learnrecord.php"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;学习记录</a></li>
+            <li><a href="/mycalligraphy/userinfo.php"><span class="glyphicon glyphicon-user"></span>&nbsp;个人设置</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><span class="glyphicon glyphicon-off"></span>&nbsp;注销账号</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+    <!-- /.navbar-collapse --> 
+  </div>
+  <!-- /.container-fluid --> 
+</nav>
+
+<!--login Modal -->
+<div class="modal fade loginModal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mylogin" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        
+        <ul id="myTab1" class="nav nav-tabs nav-justified">
+          <li class="active"> <a href="#mylogin" data-toggle="tab"><h3 class="modal-title" id="loginLabel" align="center"><strong>登录</strong></h3></a> </li>
+          <li><a href="#myregister" data-toggle="tab"><h3 class="modal-title" id="loginLabel" align="center"><strong>注册</strong></h3></a></li>
+        </ul>
+      </div>
+<!--登录模块-->
+        <div id="myTabContent1" class="tab-content">
+          <div class="tab-pane fade in active" id="mylogin">
+             <div class="modal-body">
+         <form class="form-horizontal" id="logininfo">
+          <div class="form-group">
+
+            <div class="input-group col-sm-offset-1 col-sm-10">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+              <input type="username" class="form-control" id="username" placeholder="请填写您的用户名">
+            </div>
+          </div>
+          <div class="form-group">
+
+            <div class="input-group col-sm-offset-1 col-sm-10">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+              <input type="password" class="form-control" id="password" placeholder="请填写您的密码">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label  style="color: #000;">
+                  <input type="checkbox">记住我
+                </label>
+              </div>
+            </div>
+          </div>
+
+    <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-5">
+              <button type="submit" class="btn btn-default btn-block">登录</button>
+              </div>
+              <div class=" col-sm-5">
+              <button type="button" class="btn btn-default btn-block" data-dismiss="modal">取消</button>
+              </div>
+           </div>   
+
+        </form>
+
+      </div>
+          </div>
+          <!--注册模块-->
+          <div class="tab-pane fade" id="myregister">
+                  <div class="modal-body">
+         <form class="form-horizontal" id="registerinfo">
+          <div class="form-group">
+
+            <div class="input-group col-sm-offset-1 col-sm-10">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+              <input type="username" class="form-control" id="username" placeholder="请填写您的用户名">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group col-sm-offset-1 col-sm-10">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+              <input type="password" class="form-control" id="password" placeholder="请填写您的密码">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group col-sm-offset-1 col-sm-10">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+              <input type="password2" class="form-control" id="password2" placeholder="再次确认您的密码">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group col-sm-offset-1 col-sm-10">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
+              <select class="form-control" id="profession">
+                <option value="">请选择您的职业</option>
+                <option>学生</option>
+                <option>教师</option>
+                <option>书法工作者</option>
+                <option>其他</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group col-sm-offset-1 col-sm-10">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-edit"></span></div>
+              <select class="form-control" id="profession">
+                <option value="">请选择您喜爱的书法类型</option>
+                <option>行楷</option>
+                <option>草书</option>
+                <option>行书</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group col-sm-offset-1 col-sm-10">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+              <input type="email" class="form-control" id="email" placeholder="您的邮箱">
+            </div>
+          </div>
+          
+
+            <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-5">
+              <button type="submit" class="btn btn-default btn-block">注册</button>
+              </div>
+              <div class=" col-sm-5">
+              <button type="button" class="btn btn-default btn-block" data-dismiss="modal">取消</button>
+              </div>
+           </div>   
+
+            </form>
+
+         </div>
+
+          </div>
+        </div>
+
+     
+
+
+    </div>
+  </div>
+</div>

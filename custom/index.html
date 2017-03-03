@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <title>汉字·组合·游戏</title>
+    <link href="/mycalligraphy/css/bootstrap.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="hanzi-zuhe.css" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="/mycalligraphy/logo.ico" media="screen" />
+    <link rel="Bookmark" href="/mycalligraphy/logo.ico" >
+
+
+    <link rel="stylesheet" href="/mycalligraphy/css/yunyoustyle.css">
+
+    <script src="/mycalligraphy/js/jquery-3.1.1.min.js"></script>
+
+    <script src="/mycalligraphy/js/bootstrap.js"></script>
+
+<!--     <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script> -->
+    <script type="text/javascript" src="support-hanzi-zuhe.js"></script>
+    <script type="text/javascript" src="showanimation-hanzi-zuhe.js"></script>
+    <script type="text/javascript" src="main-hanzi-zuhe.js"></script>
+
+    <style type="text/css">
+        body {
+          padding-top: 60px;
+        }
+        .progress-bar{
+            background-color: rgba(0,0,0,0.8);
+            font-family: Microsoft YaHei;
+            color: #fff;
+            text-shadow: 0px 0px 5px #000;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar"></nav>
+    <script type="text/javascript">
+    $.get('/mycalligraphy/navbar.html',function(data){
+    $('#navbar').html(data);
+    }); 
+    </script>
+
+    <header id="head-container">
+        <button onclick="javascript:newgame();" id="newgamebutton" class="btn btn-inverse btn-lg btn-block" >开始组合</button>
+<!--         <h3 class="score-container">分数: 
+        <span >0</span>
+        </h3> -->
+        <h3>
+        <div class="progress" style="background-color:rgba(255,255,255,0.3); ">
+          <div id="score" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 100%;">100%
+          </div>
+          <div id="cache" class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 100%;background-color:rgba(0,0,0,0.2);">
+              <span class="sr-only">100%</span>
+            </div>
+        </div>
+        </h3>
+    </header>
+
+<div class="game-container show-modal">
+
+    <div id="grid-container" class="grid-container container">
+        <div class="grid-cell" id="grid-cell-0-0"></div>
+        <div class="grid-cell" id="grid-cell-0-1"></div>
+        <div class="grid-cell" id="grid-cell-0-2"></div>
+        <div class="grid-cell" id="grid-cell-0-3"></div>
+
+        <div class="grid-cell" id="grid-cell-1-0"></div>
+        <div class="grid-cell" id="grid-cell-1-1"></div>
+        <div class="grid-cell" id="grid-cell-1-2"></div>
+        <div class="grid-cell" id="grid-cell-1-3"></div>
+
+        <div class="grid-cell" id="grid-cell-2-0"></div>
+        <div class="grid-cell" id="grid-cell-2-1"></div>
+        <div class="grid-cell" id="grid-cell-2-2"></div>
+        <div class="grid-cell" id="grid-cell-2-3"></div>
+
+        <div class="grid-cell" id="grid-cell-3-0"></div>
+        <div class="grid-cell" id="grid-cell-3-1"></div>
+        <div class="grid-cell" id="grid-cell-3-2"></div>
+        <div class="grid-cell" id="grid-cell-3-3"></div>
+    </div>
+    
+<!--     <div class="modal"  style="width:500px;margin:0 auto;">
+        <button class="btn btn-inverse btn-lg" onclick="javascript:newgame();">再来一次</button>
+    </div> -->
+</div>
+
+<div id="restartgame" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+
+    <button type="button" id="restartbtn" class="btn btn-inverse btn-lg" data-toggle="modal" data-target="#restartgame" onclick="javascript:newgame();">再来一次</button>
+</div>
+</div><!-- /.modal -->
+
+</body>
+
+<!--百度分享-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","renren","tqq","tieba","douban","bdhome","sqq","youdao","mail","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"5","bdPos":"right","bdTop":"103.5"},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+</html>

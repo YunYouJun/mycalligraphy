@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mycalligraphy</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="css/yunyoustyle.css">
+
+</head>
+<body>
+  
+
+<!-- <header role="banner">
+
+  <div class="navbar-example">
+    <ul class="nav nav-tabs" role="tablist">
+
+    </ul>
+  </div>
+
+
+  </header>-->
+  
+  
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid"> 
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      <a class="navbar-brand" href="#">预留logo&nbsp;</a></div>
+
+    <div class="collapse navbar-collapse" id="defaultNavbar1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home" title="主页"></span></a></li>
+        <li><a href="#">单字检索<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">书法论坛</a></li>
+        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">我要学习<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">新作学习</a></li>
+            <li><a href="#">继续学习</a></li>
+            <li class="divider"></li>
+            <li><a href="#">备用</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="搜索文字">
+        </div>
+        <button type="submit" class="btn btn-inverse">搜索</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a data-toggle="modal" data-target="#loginModal">登录</a></li>
+        <li><a data-toggle="modal" data-target="#registerModal">注册</a></li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse --> 
+  </div>
+  <!-- /.container-fluid --> 
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1 class="text-center">My&middot;Calligraphy</h1>
+    </div>
+  </div>
+  <hr>
+</div>
+
+
+
+<!--login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mylogin" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-title" id="loginLabel" align="center"><strong>登录</strong></h3>
+      </div>
+      <div class="modal-body">
+         <form class="form-horizontal" role="form">
+          <div class="form-group">
+
+            <div class="input-group col-sm-offset-1 col-sm-10">
+            	<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+              <input type="username" class="form-control" id="username" placeholder="请填写您的用户名">
+            </div>
+          </div>
+          <div class="form-group">
+
+            <div class="input-group col-sm-offset-1 col-sm-10">
+            	<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+              <input type="password" class="form-control" id="password" placeholder="请填写您的密码">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">记住我
+                </label>
+              </div>
+            </div>
+          </div>
+
+		<div class="form-group">
+            <div class="col-sm-offset-1 col-sm-5">
+              <button type="submit" class="btn btn-default btn-block">登录</button>
+              </div>
+              <div class=" col-sm-5">
+              <button type="button" class="btn btn-default btn-block" onClick="" >注册</button>
+              </div>
+           </div>   
+
+        </form>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<!--register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="mylogin" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-title" id="registerLabel" align="center"><strong>注册</strong></h3>
+      </div>
+      <div class="modal-body">
+         <form class="form-horizontal" role="form">
+          <div class="form-group">
+
+            <div class="input-group col-sm-offset-1 col-sm-10">
+            	<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+              <input type="username" class="form-control" id="username" placeholder="请填写您的用户名">
+            </div>
+          </div>
+          <div class="form-group">
+
+            <div class="input-group col-sm-offset-1 col-sm-10">
+            	<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+              <input type="password" class="form-control" id="password" placeholder="请填写您的密码">
+            </div>
+          </div>
+          <div class="form-group">
+
+            <div class="input-group col-sm-offset-1 col-sm-10">
+            	<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+              <input type="password2" class="form-control" id="password2" placeholder="确认您的密码">
+            </div>
+          </div>
+
+		<div class="form-group">
+            <div class="col-sm-offset-1 col-sm-5">
+              <button type="submit" class="btn btn-default btn-block">登录</button>
+              </div>
+              <div class=" col-sm-5">
+              <button type="button" class="btn btn-default btn-block" onClick="">注册</button>
+              </div>
+           </div>   
+
+        </form>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- 轮播 -->
+ <div class="col-md-8 col-md-offset-2" id="carousel">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="img/carousel/bg1.jpg" alt="...">
+      <div class="carousel-caption">
+        <h3>...</h3>
+        <p>...</p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="img/carousel/bg2.jpg" alt="...">
+      <div class="carousel-caption">
+        <h3>...</h3>
+        <p>...</p>
+      </div>
+    </div>
+    <div class="item">
+      <img src="img/carousel/bg3.jpg" alt="...">
+      <div class="carousel-caption">
+        <h3>...</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="text-justify col-sm-4"> *** </div>
+    <div class="col-sm-4 text-justify"> *** </div>
+    <div class="col-sm-4 text-justify"> *** </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="text-center col-md-12">
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="text-center col-md-6 col-md-offset-3">
+      <h4>My&middot;Calligraphy</h4>
+      <p>Copyright &copy; 2016 &middot; All Rights Reserved &middot;Yunyoujun</p>
+    </div>
+  </div>
+
+  <iframe src="footer.html"></iframe>
+</div>
+
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="js/jquery-3.1.1.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="js/bootstrap.js"></script>
+</body>
+</html>
