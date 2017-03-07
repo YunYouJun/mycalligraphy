@@ -9,7 +9,7 @@
 <!-- Bootstrap -->
 
 <?php
-  include("headlink.html");
+  include("../same/headlink.html");
   ?>
 
 
@@ -22,7 +22,7 @@ document.getElementById("mylearn").classList.add('active');
 <body onLoad="ready()">
 
   <?php
-	include("navbar.html");
+	include("../same/navbar.html");
 	?>
 
 <!--标题-->
@@ -67,7 +67,7 @@ document.getElementById("mylearn").classList.add('active');
 </div>
 
   <?php
-  include("footer.html");
+  include("../same/footer.html");
   ?>
 
 

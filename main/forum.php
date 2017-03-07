@@ -9,11 +9,11 @@
 <!-- Bootstrap -->
 
 <?php
-  include("headlink.html");
+  include("../same/headlink.html");
   ?>
-<link rel="stylesheet" href="css/yunyou-input-group.css">
+<link rel="stylesheet" href="../css/yunyou-input-group.css">
 
-<link rel="stylesheet" href="css/picstyle.css" media="screen" type="text/css" />
+<link rel="stylesheet" href="../css/picstyle.css" media="screen" type="text/css" />
 <script>
 function ready(){
 document.getElementById("forum").classList.add('active');
@@ -28,7 +28,7 @@ document.getElementById("forum").classList.add('active');
 <body onLoad="ready()" data-spy="scroll" data-target="#navbar-user" data-offset="100" >
 
   <?php
-	include("navbar.html");
+	include("../same/navbar.html");
 	?>
 
 <div class="container-fluid">
@@ -45,7 +45,7 @@ document.getElementById("forum").classList.add('active');
 		<div class="col-md-7">
 			<div class="media">
 			  <a class="media-left portrait" href="#" data-toggle="modal" data-target=".modalpic">
-			    <img class="pic" src="img/character/142(20,109,925,1025).jpg" alt="..." data-src-wide="img/character/142(20,109,925,1025).jpg" style="max-width: 70px;max-height: 70px;">
+			    <img class="pic" src="../img/character/142(20,109,925,1025).jpg" alt="..." data-src-wide="img/character/142(20,109,925,1025).jpg" style="max-width: 70px;max-height: 70px;">
 			  </a>
 			  <div class="media-body">
 			    <a href="post.php"><h4 class="media-heading">帖子标题</h4></a>
@@ -83,12 +83,12 @@ document.getElementById("forum").classList.add('active');
 </div>
 
   <?php
-	include("footer.html");
+	include("../same/footer.html");
 	?>
 <div class="carrousel "> <span class="close entypo-cancel glyphicon glyphicon-remove"></span>
   <div class="wrapper"> <img src="img/" alt="BINGOO" /> </div>
 </div>
-<script src='js/pic/picjquery.js'></script> 
-<script src="js/pic/picindex.js"></script>
+<script src='../js/pic/picjquery.js'></script> 
+<script src="../js/pic/picindex.js"></script>
 </body>
 </html>

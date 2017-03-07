@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head lang="zh_cn">
     <meta charset="UTF-8">
-    <title>慕课网 - 学写一个字</title>
-    <script src="jquery-2.1.3.min.js" type="text/javascript"></script>
-    <link href="handwriting.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content=" height = device-height,
                     width = device-width,
@@ -12,24 +10,62 @@
                     minimum-scale = 1.0,
                     maximum-scale = 1.0,
                     user-scalable = no"/>
+    <title>汉字·书写</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../logo.ico" media="screen" />
+    <link rel="Bookmark" href="../logo.ico" >
+    <link rel="stylesheet" type="text/css" href="../css/csshake.min.css">
+    <link rel="stylesheet" href="../css/yunyoustyle.css">
+
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+
+    <link href="handwriting.css" rel="stylesheet" type="text/css"/>
+
 </head>
 <body>
-
+    <nav id="navbar"></nav>
+    <script type="text/javascript">
+    $.get('../same/navbar.html',function(data){
+    $('#navbar').html(data);
+    }); 
+    </script>
     <canvas id="canvas">
         您的浏览器不支持canvas
     </canvas>
     <div id="controller">
-        <div id="black_btn" class="color_btn color_btn_selected"></div>
-        <div id="blue_btn" class="color_btn"></div>
-        <div id="green_btn" class="color_btn"></div>
-        <div id="red_btn" class="color_btn"></div>
-        <div id="orange_btn" class="color_btn"></div>
-        <div id="yellow_btn" class="color_btn"></div>
-
-        <div id="clear_btn" class="op_btn">清 除</div>
-        <div class="clearfix"></div>
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <div id="black_btn" class="btn btn-inverse color_btn color_btn_selected" style="background-color: #000;"></div>
+        </div>
+        <div class="btn-group" role="group">
+            <div id="blue_btn" class="btn btn-primary color_btn"></div>
+        </div>
+        <div class="btn-group" role="group">
+            <div id="green_btn" class="btn btn-success color_btn"></div>
+        </div>
+        <div class="btn-group" role="group">
+            <div id="red_btn" class="btn btn-danger color_btn "></div>
+        </div>
+        <div class="btn-group" role="group">
+            <div id="sky_btn" class="btn btn-info color_btn"></div>
+        </div>
+        <div class="btn-group" role="group">
+            <div id="yellow_btn" class="btn btn-warning color_btn"></div>
+        </div>
+<!--         <div class="btn-group" role="group">
+            <div id="yellow_btn" class="btn btn-default color_btn"></div>
+        </div> -->
+        <div class="btn-group" role="group">
+            <input type="color" id="ColorPick" name="ColorPick"  value="#666666" class="btn color_btn" style="background-color:#ffffff;
+                border:0px;padding: 0px 1px 0px 1px;">
+        </div>
     </div>
-
+        <div style="margin-top: 10px;">
+            <button id="clear_btn" class="btn btn-inverse btn-block">清 除</button>
+        </div>
+    </div>
     <script src = "handwriting.js"></script>
 </body>
 </html>

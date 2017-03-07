@@ -4,17 +4,17 @@
   font-family:'经典繁毛楷'; 
   src: url('../fonts/jdfmk.ttf') format('truetype');
 } */
-@font-face{
+/*@font-face{
     font-family:'经典繁毛楷';
     src:url('../fonts/jdfmk.ttf') format('truetype');  
-}
+}*/
 
 body {
   background: #616161 url(../img/bg.jpg) center no-repeat;
   background-attachment:fixed;
   background-size:cover;
   position: relative;
-  font-family:'经典繁毛楷',Microsoft YaHei;
+  font-family:'华文行楷','华文隶书',Microsoft YaHei;
   padding-top: 63px;
   color: #ffffff;
 }
@@ -55,7 +55,7 @@ hr{
 /*按钮重载*/
 .btn-inverse {
   color:#fff;
-  background-color:rgba(0,0,0,0.4);
+  background-color:rgba(0,0,0,0.8);
   border:none;
 }
 .btn-inverse:focus,
@@ -101,12 +101,12 @@ hr{
 .yunyou-bgblur{
     box-shadow:0px 0px 15px #000;
     -moz-box-shadow:0px 0px 15px #000;
-    -webkit-box-shadow:0px 0px 15px #000;
+    -webkit-box-shadow:0px 0px 5px #000;
     border-radius: 5px;
 }
 .yunyou-input{
-	background-color:rgba(0,0,0,0.5);
-	border:rgba(0,0,0,0.6);
+	background-color:rgba(0,0,0,0.6);
+	border:rgba(0,0,0,0.7);
 	color:rgba(255,255,255,1.00);
 	font-size:large;
 }
@@ -168,7 +168,7 @@ hr{
 }
 
 .yunyou-background{
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.6);
 }
 .yunyou-panel{
    padding:10px 10px 10px 10px;
@@ -182,7 +182,7 @@ hr{
 .nav > li > a:hover,
 .nav > li > a:focus{
   text-decoration: none;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.4);
   color: #fff;
   -webkit-transition: all 1s;-moz-transition: all 1s;-o-transition: all 1s;
 }
@@ -190,7 +190,7 @@ hr{
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
     text-decoration: none;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.4);
   color: #fff;
   -webkit-transition: all 1s;-moz-transition: all 1s;-o-transition: all 1s;
 }
@@ -199,7 +199,7 @@ hr{
   position: fixed;
 }
 .yunyou-block{
-  border: 1px solid rgba(0,0,0,0.3);
+  border: 1px solid rgba(0,0,0,0.4);
 }
 .Absolute-Center {  
   margin: auto;  

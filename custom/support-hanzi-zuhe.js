@@ -44,7 +44,7 @@ function getNumberColor( number ){
         case 16:return "#DDD";break;
         case 32:return "#EEE";break;
         case 64:return "#FFF";break;
-        case 128:return "#505050";break;
+        case 128:return "#101010";break;
         case 256:return "#444";break;
         case 512:return "#333";break;
         case 1024:return "#222";break;
@@ -61,8 +61,8 @@ function getNumberText( number ){
         case 8:return "十";break;
         case 16:return "艹";break;
         case 32:return "日";break;
-        case 64:return "田";break;
-        case 128:return "用";break;
+        case 64:return "昌";break;
+        case 128:return "晶";break;
         case 256:return "韭";break;
         case 512:return "韱";break;
         case 1024:return "龍";break;

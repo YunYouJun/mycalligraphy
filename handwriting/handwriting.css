@@ -1,11 +1,13 @@
 #canvas{
     display:block;
     margin:0 auto;
+    background-color:rgba(255,255,255,0.5); 
 }
 #controller{
-    margin:0 auto;
+    margin:10px auto;
 }
-.op_btn{
+
+/*.op_btn{
     float: right;
     margin:10px 0 0 10px;
     border:2px solid #aaa;
@@ -22,41 +24,47 @@
 }
 .op_btn:hover{
     background-color:#def;
-}
+}*/
 .clearfix{
     clear:both;
 }
 
 .color_btn{
-    float: left;
-    margin: 10px 10px 0 0;
-    border:5px solid white;
-    width:40px;
-    height:40px;
+/*    border:5px solid white;*/
+    height:30px;
     border-radius: 5px 5px;
     cursor:pointer;
 }
-.color_btn:hover{
+/*.color_btn:hover{
     border: 5px solid violet;
-}
+    box-shadow: 0px 0px 7px 3px rgba(255,255,255,1);
+}*/
 .color_btn_selected{
-    border: 5px solid blueviolet;
+/*    border: 5px solid blueviolet;*/
+    border:5px solid rgba(255,255,255,0.8);
+    position: relative;
+    top:-5px;
 }
-#black_btn{
+/*#black_btn{
     background-color: black;
-}
-#blue_btn{
+}*/
+/*#blue_btn{
     background-color: blue;
-}
-#green_btn{
+}*/
+/*#green_btn{
     background-color: green;
 }
 #red_btn{
     background-color: red;
-}
-#orange_btn{
+}*/
+/*#orange_btn{
     background-color: orange;
 }
 #yellow_btn{
     background-color: yellow;
+}*/
+
+.btn:focus,
+.btn.focus {
+    outline: 0px;
 }

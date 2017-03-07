@@ -9,9 +9,9 @@
 <!-- Bootstrap -->
 
 <?php
-  include("headlink.html");
+  include("../same/headlink.html");
   ?>
-<link rel="stylesheet" href="css/yunyou-input-group.css">
+<link rel="stylesheet" href="../css/yunyou-input-group.css">
 
 <script>
 function ready(){
@@ -22,7 +22,7 @@ document.getElementById("user").classList.add('active');
 <body onLoad="ready()" data-spy="scroll" data-target="#navbar-user" data-offset="100" >
 
   <?php
-	include("navbar.html");
+	include("../same/navbar.html");
 	?>
 
 <div class="container-fluid">
@@ -38,13 +38,13 @@ document.getElementById("user").classList.add('active');
 	<div class="col-md-12">
 		<div id="navbar-user" class="col-md-2">
 			<ul class="nav nav-pills nav-stacked yunyou-bgblur yunyou-background yunyou-fixed" style="font-size:large;">
-				<li ><a href="#userinformation"><span class="glyphicon glyphicon-user"></span>&nbsp;个人信息</a></li>
+				<li ><a href="#usercenter"><span class="glyphicon glyphicon-user"></span>&nbsp;个人信息</a></li>
 				<li ><a href="#modifypassword"><span class="glyphicon glyphicon-lock"></span>&nbsp;修改密码</a></li>
 			</ul>
 		</div>
 		<!--10列的-->
 		<div class="col-md-10">
-		<div class="yunyou-bgblur yunyou-background yunyou-panel" id="userinformation">
+		<div class="yunyou-bgblur yunyou-background yunyou-panel" id="userinformation" >
 			<div class="row text-center">
 				<h3>个人信息</h3>
 				<br>
@@ -131,7 +131,7 @@ document.getElementById("user").classList.add('active');
 
 
   <?php
-	include("footer.html");
+	include("../same/footer.html");
 	?>
 
 

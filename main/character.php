@@ -9,7 +9,7 @@
 <!-- Bootstrap -->
 
 <?php
-  include("headlink.html");
+  include("../same/headlink.html");
   ?>
 
 
@@ -22,11 +22,11 @@ document.getElementById("character").classList.add('active');
 <body onLoad="ready()">
 
   <?php
-	include("navbar.html");
+	include("../same/navbar.html");
 	?>
 
 <!--标题-->
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="text-center col-md-12">
       <h1 >汉字&middot;检索</h1>
@@ -91,7 +91,7 @@ document.getElementById("character").classList.add('active');
           <div class="carousel-inner" role="listbox">
             <div class="item active">
               <a href="singlecharacter.php">
-              <img src="img/carousel/bg1.jpg" alt="...">
+              <img src="../img/carousel/bg1.jpg" alt="...">
               <div class="carousel-caption">
                 <h3>云游君</h3>
                 <p>惊天浪淘杀</p>
@@ -99,14 +99,14 @@ document.getElementById("character").classList.add('active');
               </a>
             </div>
             <div class="item">
-              <img src="img/carousel/bg2.jpg" alt="...">
+              <img src="../img/carousel/bg2.jpg" alt="...">
               <div class="carousel-caption">
                 <h3>流影电光闪</h3>
                 <p>天羽屠龙舞</p>
               </div>
             </div>
             <div class="item">
-              <img src="img/carousel/bg3.jpg" alt="...">
+              <img src="../img/carousel/bg3.jpg" alt="...">
               <div class="carousel-caption">
                 <h3>泰山陨石坠</h3>
                 <p>月色血风暴</p>
@@ -138,21 +138,21 @@ document.getElementById("character").classList.add('active');
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
             <div class="item active">
-              <img src="img/carousel/bg1.jpg" alt="...">
+              <img src="../img/carousel/bg1.jpg" alt="...">
               <div class="carousel-caption">
                 <h3>云游君</h3>
                 <p>惊天浪淘杀</p>
               </div>
             </div>
             <div class="item">
-              <img src="img/carousel/bg2.jpg" alt="...">
+              <img src="../img/carousel/bg2.jpg" alt="...">
               <div class="carousel-caption">
                 <h3>流影电光闪</h3>
                 <p>天羽屠龙舞</p>
               </div>
             </div>
             <div class="item">
-              <img src="img/carousel/bg3.jpg" alt="...">
+              <img src="../img/carousel/bg3.jpg" alt="...">
               <div class="carousel-caption">
                 <h3>泰山陨石坠</h3>
                 <p>月色血风暴</p>
@@ -184,21 +184,21 @@ document.getElementById("character").classList.add('active');
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
             <div class="item active">
-              <img src="img/carousel/bg1.jpg" alt="...">
+              <img src="../img/carousel/bg1.jpg" alt="...">
               <div class="carousel-caption">
                 <h3>云游君</h3>
                 <p>惊天浪淘杀</p>
               </div>
             </div>
             <div class="item">
-              <img src="img/carousel/bg2.jpg" alt="...">
+              <img src="../img/carousel/bg2.jpg" alt="...">
               <div class="carousel-caption">
                 <h3>流影电光闪</h3>
                 <p>天羽屠龙舞</p>
               </div>
             </div>
             <div class="item">
-              <img src="img/carousel/bg3.jpg" alt="...">
+              <img src="../img/carousel/bg3.jpg" alt="...">
               <div class="carousel-caption">
                 <h3>泰山陨石坠</h3>
                 <p>月色血风暴</p>
@@ -253,7 +253,7 @@ document.getElementById("character").classList.add('active');
 </div>
 
   <?php
-  include("footer.html");
+  include("../same/footer.html");
   ?>
 
 

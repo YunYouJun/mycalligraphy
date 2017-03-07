@@ -4,32 +4,32 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>我的考核</title>
+<title>作品学习</title>
 
 <!-- Bootstrap -->
 
 <?php
-  include("headlink.html");
+  include("../same/headlink.html");
   ?>
 
-<link rel="stylesheet" href="css/yunyou-input-group.css">
+
 <script>
 function ready(){
-document.getElementById("mylearn").classList.add('active');
+document.getElementById("character").classList.add('active');
 }
 </script>
 </head>
 <body onLoad="ready()">
 
   <?php
-	include("navbar.html");
+	include("../same/navbar.html");
 	?>
 
 <!--标题-->
 <div class="container-fluid">
   <div class="row">
     <div class="text-center col-md-12">
-      <h1 >学习&middot;考核</h1>
+      <h1 >作品&middot;学习</h1>
     </div>
   </div>
   <hr>
@@ -39,39 +39,32 @@ document.getElementById("mylearn").classList.add('active');
 <div class="container">
   <div class="row">
       <div class="yunyou-background yunyou-bgblur col-md-12 yunyou-panel" style="font-size: large;">
-        <div class="col-md-12 text-center yunyou-panel">
-        <button type="button" class="btn btn-inverse yunyou-bgblur"><span class="glyphicon glyphicon-chevron-left"></span></button>
-        <img src="img/character/142(20,109,925,1025).jpg" style="font-size:xx-large; max-width: 260px;">
-        <button type="button" class="btn btn-inverse yunyou-bgblur"><span class="glyphicon glyphicon-chevron-right"></span></button>
+        <div class="col-md-3  yunyou-panel">
+        <img src="img/book/00000178.gif" style="font-size:xx-large; max-width: 260px;">
         </div>
-
-          <form action="" name="mypinyin">
-          <div class="form-group form-inline col-md-12">
-            <div class="input-group yunyou-bgblur col-md-offset-4 col-md-3">
-              <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span>&nbsp;读音</div>
-              <input type="username" class="form-control" id="username" placeholder="填写您认为正确的读音" style="background: rgba(0,0,0,0.3);">
-            </div>
-            <div class="input-group col-md-1 text-center"><button type="submit" class="btn btn-inverse yunyou-bgblur">确定</button></div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-12 text-center yunyou-background">字帖名字？</div>
+            <p class="text-center yunyou-block">
+            嘿呀，好气啊！
+            </p>
           </div>
-          </form>
-
-        <div class="col-md-12">
           <div class="row yunyou-input" style="color: #ccc;">
-
+            <div class="col-md-1 text-center yunyou-block">读音</div>
             <div class="col-md-1 text-center yunyou-block">繁体</div>
             <div class="col-md-1 text-center yunyou-block">部首</div>
             <div class="col-md-1 text-center yunyou-block">笔画</div>
             <div class="col-md-2 text-center yunyou-block">五笔</div>  
-            <div class="col-md-3 text-center yunyou-block">结构</div>
+            <div class="col-md-2 text-center yunyou-block">结构</div>
             <div class="col-md-4 text-center yunyou-block">造字法</div>     
           </div>
           <div class="row">
-
+            <div class="col-md-1 text-center yunyou-block">suǒ</div>
             <div class="col-md-1 text-center yunyou-block">所</div>
             <div class="col-md-1 text-center yunyou-block">斤部</div>
             <div class="col-md-1 text-center yunyou-block">8笔</div>
             <div class="col-md-2 text-center yunyou-block">RNRH</div>   
-            <div class="col-md-3 text-center yunyou-block">左右结构</div>
+            <div class="col-md-2 text-center yunyou-block">左右结构</div>
             <div class="col-md-4 text-center yunyou-block">形声；右形左声</div>
           </div>
           <div class="row">
@@ -86,23 +79,6 @@ document.getElementById("mylearn").classList.add('active');
         </div>
       </div>
   </div>
-    <div class="row">
-      <div class="text-center col-md-12">
-    <nav >
-    <ul class="pagination" style="margin:0px;">
-      <li><a href="#"><span class="glyphicon glyphicon-fast-backward"></span></a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-step-backward"></span></a></li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-step-forward"></span></a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-fast-forward"></span></a></li>
-    </ul>
-    </nav>
-      </div>
-   </div>
 <!--  <div class="row col-md-12">
     <div style="background: #fff;height: 50px;" class="col-md-6"></div>
     <div style="background: #000;height: 50px;" class="col-md-6"></div>
@@ -111,7 +87,7 @@ document.getElementById("mylearn").classList.add('active');
 </div>
 
   <?php
-  include("footer.html");
+  include("../same/footer.html");
   ?>
 
 

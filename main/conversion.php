@@ -9,10 +9,10 @@
 <!-- Bootstrap -->
 
 <?php
-  include("headlink.html");
+  include("../same/headlink.html");
   ?>
 
-<link rel="stylesheet" href="css/yunyou-input-group.css">
+<link rel="stylesheet" href="../css/yunyou-input-group.css">
 
 
 <script>
@@ -24,7 +24,7 @@ document.getElementById("conversion").classList.add('active');
 <body onLoad="ready()">
 
   <?php
-	include("navbar.html");
+	include("../same/navbar.html");
 	?>
 
 <!--标题-->
@@ -51,9 +51,19 @@ document.getElementById("conversion").classList.add('active');
           </div>
 
         <div class="col-md-12">
-          <div class="row yunyou-input">
+          <div class="row ">
 
-            <div class="col-md-3 text-center yunyou-block">字体</div>
+            <div class="col-md-3 text-center" style="padding: 0">
+            <div class="form-group" style="margin: 0">
+            <label for="FontInfoId" style="display: block;margin: 0;" class="yunyou-input yunyou-block">字体</label>
+              <select id="FontInfoId" name="FontInfoId" class="form-control">
+                <option value="0">请选择想要转换的字体</option>
+                <option value="344">毛笔艺术字体</option>
+                <option value="344">云游艺术字体</option>
+              </select>
+            </div>
+            </div>
+
             <div class="col-md-1 text-center yunyou-block">大小</div>
             <div class="col-md-1 text-center yunyou-block">宽度</div>
             <div class="col-md-1 text-center yunyou-block">高度</div>  
@@ -95,18 +105,18 @@ document.getElementById("conversion").classList.add('active');
           </div>
           <div class="row">
           <hr>
-            <div class="col-md-12 text-center yunyou-background"><h4>生成图片</h4></div>
+            <div id="generateimage" class="col-md-12 text-center yunyou-background"><h4>生成图片</h4></div>
             <div class="col-md-12 text-center yunyou-block" id="newimg">
-                    <canvas  id="cavasimg" width="570" height="120"  class="yunyou-bgblur">
-                    
+                    <canvas  id="cavasimg" class="yunyou-bgblur">
+                    浏览器不兼容canvas
                     </canvas> 
 <script type="text/javascript">
 var canvas = document.getElementById("cavasimg");   
-        canvas.width = 570;   
+        canvas.width = $('#generateimage').width();   
         canvas.height = 120;   
         var context = canvas.getContext("2d");   
         var img = new Image();   
-        img.src = "img/conversion/example.png";   
+        img.src = "../img/conversion/example.png";   
         img.onload = function(){   
             context.drawImage(img,0,0);   
         }    
@@ -136,7 +146,7 @@ var canvas = document.getElementById("cavasimg");
 </div>
 
   <?php
-  include("footer.html");
+  include("../same/footer.html");
   ?>
 
 

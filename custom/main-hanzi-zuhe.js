@@ -12,6 +12,7 @@ var startx = 0;
 var starty = 0;
 var endx = 0;
 var endy = 0;
+var winflag = 0;
 
 $(document).ready(function(){
     prepareForMobile();
@@ -31,11 +32,11 @@ function prepareForMobile(){
     $('.grid-container').css('width',gridContainerWidth);
     $('.grid-container').css('height',gridContainerWidth);
     $('.grid-container').css('padding', cellSpace);
-    $('.grid-container').css('border-radius',0.02*gridContainerWidth);
+    $('.grid-container').css('border-radius',0.04*gridContainerWidth);
 
     $('.grid-cell').css('width',cellSideLength);
     $('.grid-cell').css('height',cellSideLength);
-    $('.grid-cell').css('border-radius',0.02*cellSideLength);
+    $('.grid-cell').css('border-radius',0.04*cellSideLength);
 }
 
 function newgame(){
@@ -92,6 +93,7 @@ function updateBoardView(){
                 theNumberCell.css('left',getPosLeft(i,j));
                 theNumberCell.css('background-color',getNumberBackgroundColor( board[i][j] ) );
                 theNumberCell.css('color',getNumberColor( board[i][j] ) );
+                theNumberCell.css('border-radius',0.04*cellSideLength);
                 theNumberCell.text( getNumberText( board[i][j] ) );
             }
 
@@ -178,6 +180,9 @@ $(document).keydown( function( event ){
             break;
         case 82:
             newgame();break;
+        case 13:
+            // $('#restartgame').modal('hide');break;
+            $('.modal').click();break;
         default: //default
             break;
     }
@@ -242,9 +247,14 @@ function isgameover(){
 function gameover(){
     $('#restartgame').modal('show');
     $("#restartbtn").css({ 
-         position: "absolute", 
-         top: ($(window).height() - $("#restartbtn").outerHeight())/2,
-         left:($(window).width() - $("#restartbtn").outerWidth())/2
+         position: 'absolute',
+         top: '50%',
+         left: '50%',
+         transform: 'translate(-50%,-50%)'
+          // position: "absolute", 
+          // top: ($(window).height() - $("#restartbtn").outerHeight())/2
+         // left:($(window).width() - $("#restartbtn").outerWidth())/2
+         
      });      
 }
 
@@ -273,6 +283,8 @@ function moveLeft(){
                         //add
                         board[i][k] += board[i][j];
                         board[i][j] = 0;
+
+                        showMergeAnimation(i,k);
                         //add score
                         //score += board[i][k];
                         cache += board[i][k];
@@ -314,6 +326,8 @@ function moveRight(){
                         //add
                         board[i][k] += board[i][j];
                         board[i][j] = 0;
+
+                        showMergeAnimation(i,k);
                         //add score
                         //score += board[i][k];
                         cache += board[i][k];
@@ -356,6 +370,8 @@ function moveUp(){
                         //add
                         board[k][j] += board[i][j];
                         board[i][j] = 0;
+
+                        showMergeAnimation(k,j);
                         //add score
                         //score += board[k][j];
                         cache += board[i][k];
@@ -397,6 +413,8 @@ function moveDown(){
                         //add
                         board[k][j] += board[i][j];
                         board[i][j] = 0;
+
+                        showMergeAnimation(k,j);
                         //add score
                         //score += board[k][j];
                         cache += board[k][j];

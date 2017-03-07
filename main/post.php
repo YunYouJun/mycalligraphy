@@ -9,7 +9,7 @@
 <!-- Bootstrap -->
 
 <?php
-  include("headlink.html");
+  include("../same/headlink.html");
   ?>
 <link rel="stylesheet" href="css/yunyou-input-group.css">
 
@@ -28,7 +28,7 @@ document.getElementById("forum").classList.add('active');
 <body onLoad="ready()" data-spy="scroll" data-target="#navbar-user" data-offset="100" >
 
   <?php
-	include("navbar.html");
+	include("../same/navbar.html");
 	?>
 
 <div class="container-fluid">
@@ -112,7 +112,7 @@ document.getElementById("forum").classList.add('active');
 </div>
 
   <?php
-	include("footer.html");
+	include("../same/footer.html");
 	?>
 <div class="carrousel "> <span class="close entypo-cancel glyphicon glyphicon-remove"></span>
   <div class="wrapper"> <img src="img/" alt="BINGOO" /> </div>
