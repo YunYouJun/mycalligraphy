@@ -23,7 +23,7 @@ $("#clear_btn").click(
         context.clearRect( 0 , 0 , canvasWidth, canvasHeight );
         drawGrid();
     }
-);
+    );
 $(".color_btn").click(
     function(e){
         $(".color_btn").removeClass("color_btn_selected");
@@ -31,15 +31,15 @@ $(".color_btn").click(
         if($(this).is('#ColorPick')){
             //strokeColor = $('#ColorPick').val();
         }else{
-        strokeColor = $(this).css("background-color");
+            strokeColor = $(this).css("background-color");
         }
         console.log($(this).css("background-color"));
     }
-);
+    );
 
 function beginStroke(point){
     if($('.color_btn_selected').val()){
-    strokeColor = $('.color_btn_selected').val();
+        strokeColor = $('.color_btn_selected').val();
     }
     isMouseDown = true;
     //console.log("mouse down!")
@@ -127,12 +127,12 @@ function calcLineWidth( t , s ,device){
         resultLineWidth = maxLineWidth - (v-minStrokeV)/(maxStrokeV-minStrokeV)*(maxLineWidth-minLineWidth);
     }
     else if(device=='phone'){
-         var rate = 2*Math.cos((v-minStrokeV)/(maxStrokeV-minStrokeV)*Math.PI/2)+1;
-         resultLineWidth = maxLineWidth - (v-minStrokeV)/(maxStrokeV-minStrokeV)*(maxLineWidth-minLineWidth)*rate;
-    }
+     var rate = 2*Math.cos((v-minStrokeV)/(maxStrokeV-minStrokeV)*Math.PI/2)+1;
+     resultLineWidth = maxLineWidth - (v-minStrokeV)/(maxStrokeV-minStrokeV)*(maxLineWidth-minLineWidth)*rate;
+ }
 
-    if( lastLineWidth == -1 )
-        return resultLineWidth;
+ if( lastLineWidth == -1 )
+    return resultLineWidth;
 
     //return resultLineWidth*1/3 + lastLineWidth*2/3;
     return Math.sqrt(resultLineWidth*resultLineWidth*1/3 + lastLineWidth*lastLineWidth*2/3);
@@ -185,7 +185,7 @@ function getBeveling(x,y)
 {  
     return Math.sqrt(Math.pow(x,2)+Math.pow(y,2));  
 }  
-  
+
 function drawDashLine(context,x1,y1,x2,y2,dashLen)  
 {  
     dashLen = dashLen === undefined ? 5 : dashLen;  
@@ -193,10 +193,23 @@ function drawDashLine(context,x1,y1,x2,y2,dashLen)
     var beveling = getBeveling(x2-x1,y2-y1);  
     //计算有多少个线段  
     var num = Math.floor(beveling/dashLen);  
-      
+
     for(var i = 0 ; i < num; i++)  
     {  
         context[i%2 === 0 ? 'moveTo' : 'lineTo'](x1+(x2-x1)/num*i,y1+(y2-y1)/num*i);  
     }  
     context.stroke();  
 }  
+
+function bgcharacter(){
+    context.clearRect( 0 , 0 , canvasWidth, canvasHeight );
+    drawGrid();
+
+    var mycharacter = $('#inputCharacter').val();
+    var fontsize = canvasWidth - 72;
+    //设置字体样式
+    context.font = fontsize + "px " + fontname;
+    //设置字体填充颜色
+    context.fillStyle = 'rgba(100,100,100,0.4)';
+    context.fillText(mycharacter, 36,canvasHeight-108);
+}

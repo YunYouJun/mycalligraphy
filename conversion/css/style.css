@@ -1,0 +1,60 @@
+
+.ui {
+  bottom: 5%;
+}
+
+.ui-input {
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid white;
+}
+
+.ui-input:focus {
+  outline: none;
+  border: none;
+}
+
+.ui-return {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  padding: 3px 2px 0 2px;
+  font-size: 10px;
+  line-height: 10px;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.ui--enter .ui-return {
+  display: block;
+}
+
+.ui--wide {
+  width: 76%;
+
+  left: 0;
+}
+
+.ui--wide .ui-return {
+  right: -20px;
+}
+
+.ui-share,
+.ui-details {
+  opacity: .9;
+  background: #fff;
+  z-index: 2;
+}
+
+.ui-details-content,
+.ui-share-content {
+  padding: 100px 50px;
+}
+
+
+
+.touch .ui-input {
+  display: none;
+}

@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+    <head>  
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+            body{background-color: #ddd;-webkit-user-select:none;font-family:sucaijiayuan,"黑体";margin: 0;padding:30px 0;}
+            @font-face{font-family:sucaijiayuan; src:url('fonts/sucaijiayuan.TTF');}
+            canvas{border: 1px solid #777;display: block;margin: auto;}
+            #imgdownload{width: 100px;height: 30px;display:inline-block;text-decoration: none;text-align: center;line-height: 30px;border-radius:3px;color:#fff;background:#000;}
+			p{text-align:center;}
+        </style>
+    
+    </head>
+    <body>
+        <canvas id="mycanvas" width="666" height="333"></canvas>
+        <p>
+        内容：<input type="text" id="mytxt1" value="" />
+        文字背景图：<select id="dbg">
+                <option value="1.png">图片一</option>
+                <option value="2.png">图片二</option>
+                <option value="3.jpg">图片三</option>
+               </select>
+             <input type="button" id="send" value="生成签名档" onclick="javascript:" />
+             <a href="javascript:;" id="imgdownload">下载图片</a>
+        </p>
+        <script>
+        window.onload=function(){
+        	character[0].src = "../img/character-data/00000000/1.png";   
+        	character[1].src = "../img/character-data/06100004/2.png";   
+        	character[2].src = "../img/character-data/06100007/1.png"; 
+        }
+        
+            var mycanvas=document.getElementById("mycanvas");
+            var mytxt1=document.getElementById("mytxt1");
+            var dbg=document.getElementById("dbg");
+            var imgdownload=document.getElementById("imgdownload");
+            var ctx=mycanvas.getContext("2d");
+            
+            var bg=new Image();
+            var bg2=new Image();
+                // bg.src='imgs/mainbg.png';
+                // bg2.src='imgs/3.jpg';
+
+            var character = new Array();
+            var sumwidth = 0;//图片总和宽度
+            var maxheight = 0;//总和高度
+            var lastposition = 0;
+            var hanzi = {width:100,height:100};
+            character.length = mytxt1.value.length;
+            console.log(mytxt1.value.length);
+
+            for (var i = 0; i < character.length; i++) {
+            	character[i] = new Image();
+            }
+            character[0] = new Image();
+            character[1] = new Image();
+            character[2] = new Image();
+
+          	for (var i = 0; i < character.length; i++) {
+          		character[i].width=100;
+          		character[i].height=100;
+          	}
+          	for (var i = 0; i < character.length; i++) {
+          		imgshow(i);
+          	}
+
+          	function imgshow(i){
+          		var img = character[i];
+          		img.onload = function() {
+          			ctx.drawImage(img,i*hanzi.width,0,hanzi.width,hanzi.height);
+          		}
+          	}
+
+            // for (var i = 0; i < character.length; i++) {
+            // 	sumwidth += character[i].width;
+            // 	maxheight = Math.max(maxheight,character[i].height);
+            // }
+
+            // bg2.onload=ShowImg;
+            
+            mycanvas.width = character.length*hanzi.width;
+            mycanvas.height = hanzi.height;
+
+            function ShowImg(){
+                bg2.src='imgs/'+dbg.value;
+                ctx.drawImage(bg,0,0,mycanvas.width,mycanvas.height);
+                ctx.save();
+                var fpadd=200;//规定内间距
+                var fsz=Math.ceil((mycanvas.width-fpadd*2)/mytxt1.value.length);//根据字数计算字体大小
+                ctx.font=fsz+"px sucaijiayuan";
+                var tw=ctx.measureText(mytxt1.value).width;//文字真实宽度
+                var ftop=(mycanvas.height-fsz)/2-30;//根据字体大小计算文字top
+                var fleft=(mycanvas.width-tw)/2+16;//根据字体大小计算文字left
+                
+                ctx.textBaseline="top";//设置绘制文本时的文本基线。
+                var woodfill = ctx.createPattern(bg2,"repeat");//设置图片为笔刷
+                ctx.fillStyle=woodfill;
+                ctx.shadowBlur=10;//阴影程度
+                ctx.shadowOffsetX=20;
+                ctx.shadowOffsetY=20;
+                ctx.shadowColor="rgba(0,0,0,1)";
+                ctx.fillText(mytxt1.value,fleft,ftop);
+                ctx.lineWidth = 1;
+                ctx.strokeStyle ="rgba(255,255,255,0.4)"; 
+                ctx.strokeText(mytxt1.value, fleft, ftop);
+                ctx.restore();
+
+            }
+            
+            document.getElementById("send").onclick=ShowImg;
+            imgdownload.onclick=function(){
+                if(!mytxt1.value){alert('请输入内容');return false;}
+                this.href = mycanvas.toDataURL();
+                this.target = "_blank";
+			    this.download =mytxt1.value + ".png";
+            }
+              
+        </script>
+    </body>
+
+</html>
