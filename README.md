@@ -1,4 +1,4 @@
 # mycalligraphy
 A website about chinese character.
 ---
-## Online Address:  [http://calligraphy.yunyoujun.online](http://calligraohy.yunyoujun.online)
+## Online Address:  [http://calligraphy.yunyoujun.online](http://calligraphy.yunyoujun.online)
