@@ -1,0 +1,78 @@
+.img-container{
+	height:400px; 
+	margin:60px auto; 
+	position:relative;
+}
+
+.img-container img{
+	height: 200px;
+	padding:5px 5px 5px; 
+	background:white; 
+	box-shadow:2px 2px 3px rgba(50, 50, 50, 0.5);
+	-webkit-transition:all 0.5s ease-in;
+	-moz-transition:all 0.5s ease-in;
+	transition:all 0.5s ease-in; 
+	position:absolute; 
+	z-index:1;
+}
+
+.img-container img:hover{
+	box-shadow:15px 15px 20px rgba(50, 50, 50, 0.5); 
+	-webkit-transform:rotate(0deg) scale(1.40); 
+	-moz-transform:rotate(0deg) scale(1.40); 
+	transform:rotate(0deg) scale(1.40); 
+	z-index:2;
+}
+
+.pic1{
+	top: -40px; 
+	right: 60px; 
+	-webkit-transform: rotate(-20deg); 
+	-moz-transform: rotate(-20deg); 
+	transform: rotate(-20deg);
+}
+
+.pic2{
+	left: 380px; 
+	top: -30px; 
+	-webkit-transform: rotate(-5deg); 
+	-moz-transform: rotate(-5deg); 
+	transform: rotate(-5deg);
+}
+
+.pic3
+{
+	bottom: 0px; 
+	right: 60px; 
+	-webkit-transform: rotate(5deg); 
+	-moz-transform: rotate(5deg); 
+	transform: rotate(5deg);
+}
+	
+.pic4
+{
+	bottom: 0px; 
+	left: 0; 
+	-webkit-transform: rotate(5deg); 
+	-moz-transform: rotate(5deg); 
+	transform: rotate(5deg);
+}
+
+.pic5
+{
+	bottom:0px; 
+	left:330px; 
+	-webkit-transform: rotate(-10deg); 
+	-moz-transform: rotate(-10deg); 
+	transform: rotate(-10deg);
+}
+
+
+.pic6
+{
+	top: -40px; 
+	left:0; 
+	-webkit-transform: rotate(10deg); 
+	-moz-transform: rotate(10deg); 
+	transform: rotate(10deg);
+}

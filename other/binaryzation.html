@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>binaryzation</title>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/myLab.css">
+
+	<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+
+<body>
+	<div class="container">
+		<div class="page-header"><h4 class="text-center">binaryzation(二值化)</h4></div>
+		<div id="canvasBox" class="text-center">
+			<canvas id="afterBinary" style="border:1px solid #c3c3c3;"></canvas>
+		</div>
+		<div class="text-center form-inline" id="control_container">
+<!-- 			<div class="form-group">
+				<label for="input_txt">内容：</label>
+				<input type="text" id="input_txt" class="form-control" value="" placeholder="请输入想要转换的内容" />
+			</div>
+			<button class="btn btn-default" type="button" id="create">
+				<span class="fa fa-refresh"></span>
+				<span>生成</span>
+			</button> -->
+			<button class="btn btn-default" type="button" id="color_toggle" title="点击单字也可切换">
+				<span class="fa fa-toggle-on" id="icon_toggle"></span>
+				<span>切换前后背景色</span>
+			</button>
+<!-- 			<div class="form-group">
+				<label for="dbg">背景图片：</label>
+				<select id="dbg" class="form-control">
+					<option value="1.png">图片一</option>
+					<option value="2.png">图片二</option>
+					<option value="3.jpg">图片三</option>
+				</select>
+			</div>	 -->
+			<a href="javascript:;" id="imgdownload" class="btn btn-default">
+				<span class="fa fa-download"></span>下载图片
+			</a>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+// 初始化内容
+//canvas
+var box = $('#canvasBox')[0];
+var height,width;
+var canvas=$('#afterBinary')[0];
+var ctx=canvas.getContext('2d');
+var toggle = 255;			  //总 黑白切换使用
+var char_toggle = new Array();//单字黑白切换
+//character
+var character = new Array();
+// var input_txt=$('#input_txt');		//输入内容
+var sumwidth = 0;	//图片总和宽度
+var maxheight = 0;	//总和高度
+var charWidth;		//字宽度
+var hanzi = {width:100,height:100};
+
+// 调用方法
+var ImgRealPath = new Array(GetQueryString("zero"),GetQueryString("first"),GetQueryString("second"),GetQueryString("third"));
+var charNum = GetQueryString("charNum");
+
+// 初始化toggle值
+character.length = charNum;
+char_toggle.length = charNum;
+for(var i=0;i<charNum;i++){
+	char_toggle[i] = toggle;
+}
+
+// 全部背景切换
+$('#color_toggle').click(function(){
+	$('#icon_toggle').toggleClass('fa-toggle-on');
+	$('#icon_toggle').toggleClass('fa-toggle-off');
+	for(var i=0;i<charNum;i++){
+		char_toggle[i] = 255-char_toggle[i];
+	}
+	resizeCanvas();
+});
+
+function ImgBinaryzation(imgData,toggle){
+	var sum = 0;
+	for(var i=0;i<imgData.data.length;i+=4){
+		// 灰度计算
+	  	sum = sum + 0.299*imgData.data[i] + 0.587*imgData.data[i+1] + 0.114*imgData.data[i+2];
+	}
+	var average = sum/(imgData.data.length/4);
+	// console.log(imgData.data.length);
+	for(var i=0;i<imgData.data.length;i+=4){
+		var rgbsum = 0.299*imgData.data[i] + 0.587*imgData.data[i+1] + 0.114*imgData.data[i+2];
+		if(rgbsum>average){
+			imgData.data[i]=toggle;
+			imgData.data[i+1]=toggle;
+			imgData.data[i+2]=toggle;
+		}else{
+			imgData.data[i]=255-toggle;
+			imgData.data[i+1]=255-toggle;
+			imgData.data[i+2]=255-toggle;
+		}
+		imgData.data[i+3]=255;
+	}
+	return imgData;
+}
+
+resizeCanvas();
+// 自适应
+$(window).resize(resizeCanvas);
+function resizeCanvas(){
+	width = box.clientWidth;
+	canvas.width = width;
+	if(charNum==0){
+		height = $(window).height()-200;
+		canvas.height = height;
+	}else{
+		charWidth = canvas.width/charNum; 
+		hanzi.width = charWidth;
+		hanzi.height = charWidth;
+		// canvas 高度
+		canvas.height = charWidth;
+	}
+	TextConvert();
+}
+
+$('#create').click(function(){
+	resizeCanvas();
+});
+
+// 点击字改变前后背景色
+$('#afterBinary').click(function(e){
+	point = {x: e.clientX , y: e.clientY} ;
+	PointInCanvas = windowToCanvas(point.x,point.y);//转换后在画布中的真实位置
+	var charOrder = Math.floor(PointInCanvas.x/hanzi.width);//获取点击的是第几个字
+	var imgData=ctx.getImageData(charOrder*hanzi.width,0,hanzi.width,hanzi.height);
+	char_toggle[charOrder] = 255 - char_toggle[charOrder];
+	// imgData = ImgBinaryzation(imgData,char_toggle[charOrder]);
+	// // 二值化后放置位置
+	// ctx.putImageData(imgData,charOrder*hanzi.width,0);
+	resizeCanvas();
+});
+
+// 转换为黑白并在画布上显示
+function TextConvert(){
+	character.length = charNum;
+	char_toggle.length =charNum;
+	for(var i=0;i<charNum;i++){
+		if(isNaN(char_toggle[i])){
+			char_toggle[i]=toggle;
+		}
+	}
+	for (i=0; i < character.length; i++) {
+		character[i] = new Image();
+		var imgpath = getImgPathByText(i);
+		character[i].src = imgpath;
+		imgshow(i);
+	}
+}
+
+// 根据输入的文字获得文字图片的路径
+function getImgPathByText(i) {
+	var imgFolder = '../img/character';
+	// var imgname = charName + '.jpg';
+	if(ImgRealPath[i]){
+		var imgpath = imgFolder + ImgRealPath[i];
+		console.log(imgpath);
+	}
+	return imgpath;
+}
+
+// 显示黑白变换后的图片
+function imgshow(i){
+	character[i].width=hanzi.width;
+	character[i].height=hanzi.height;
+	var charImg = character[i];
+	charImg.onload = function() {
+		ctx.drawImage(charImg,i*hanzi.width,0,hanzi.width,hanzi.height);
+		var imgData=ctx.getImageData(i*hanzi.width,0,hanzi.width,hanzi.height);
+		imgData = ImgBinaryzation(imgData,char_toggle[i]);
+		// 二值化后放置位置
+		ctx.putImageData(imgData,i*hanzi.width, 0 );
+	}
+}
+
+// 下载画布
+$('#imgdownload').click(function(){
+	this.href = canvas.toDataURL();
+	this.target = "_blank";
+	this.download =	'' + "-binaryzation.png";
+});
+
+// 获取对应在画布中的像素位置
+function windowToCanvas( x , y ){
+    var bbox = canvas.getBoundingClientRect();
+    return {x:Math.round(x-bbox.left) , y:Math.round(y-bbox.top)};
+}
+
+
+//	获取href url 后信息
+function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+}
+ 
+</script>
+</html>

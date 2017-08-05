@@ -10,10 +10,23 @@ var lastLineWidth = -1;
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 
+var bgcanvas = document.getElementById("bgcanvas");
+var bgcontext = bgcanvas.getContext("2d");
+
+var Ccanvas = document.getElementById("CharacterCanvas");
+var Ccontext = bgcanvas.getContext("2d");
+
+
 var device;
 
 canvas.width = canvasWidth;
 canvas.height = canvasHeight;
+
+bgcanvas.width = canvasWidth;
+bgcanvas.height = canvasHeight;
+
+Ccanvas.width = canvasWidth;
+Ccanvas.height = canvasHeight;
 
 $("#controller").css("width",canvasWidth+"px");
 drawGrid();
@@ -114,6 +127,7 @@ var maxLineWidth = canvasWidth/22;
 var minLineWidth = 1;
 var maxStrokeV = 10;
 var minStrokeV = 0.1;
+var rate = 2;
 function calcLineWidth( t , s ,device){
 
     var v = s / t;
@@ -124,16 +138,19 @@ function calcLineWidth( t , s ,device){
     else if ( v >= maxStrokeV )
         resultLineWidth = minLineWidth;
     else if(device=='pc'){
-        resultLineWidth = maxLineWidth - (v-minStrokeV)/(maxStrokeV-minStrokeV)*(maxLineWidth-minLineWidth);
+        resultLineWidth = maxLineWidth - (v-minStrokeV)/(maxStrokeV-minStrokeV)*(maxLineWidth-minLineWidth)*rate;
     }
     else if(device=='phone'){
-     var rate = 2*Math.cos((v-minStrokeV)/(maxStrokeV-minStrokeV)*Math.PI/2)+1;
+     // var rate = 2*Math.cos((v-minStrokeV)/(maxStrokeV-minStrokeV)*Math.PI/2)+1;
      resultLineWidth = maxLineWidth - (v-minStrokeV)/(maxStrokeV-minStrokeV)*(maxLineWidth-minLineWidth)*rate;
  }
 
- if( lastLineWidth == -1 )
-    return resultLineWidth;
-
+    if( lastLineWidth == -1 ){
+        return resultLineWidth;
+    }
+    if (resultLineWidth<=0) {
+        resultLineWidth = minLineWidth;
+    }
     //return resultLineWidth*1/3 + lastLineWidth*2/3;
     return Math.sqrt(resultLineWidth*resultLineWidth*1/3 + lastLineWidth*lastLineWidth*2/3);
 }
@@ -149,36 +166,36 @@ function windowToCanvas( x , y ){
 }
 function drawGrid(){
 
-    context.save();
+    bgcontext.save();
 
-    context.strokeStyle = "rgb(230,11,9)";
+    bgcontext.strokeStyle = "rgb(230,11,9)";
 
-    context.beginPath();
-    context.moveTo( 3 , 3 );
-    context.lineTo( canvasWidth - 3 , 3 );
-    context.lineTo( canvasWidth - 3 , canvasHeight - 3 );
-    context.lineTo( 3 , canvasHeight - 3 );
-    context.closePath();
-    context.lineWidth = 6;
-    context.stroke();
+    bgcontext.beginPath();
+    bgcontext.moveTo( 3 , 3 );
+    bgcontext.lineTo( canvasWidth - 3 , 3 );
+    bgcontext.lineTo( canvasWidth - 3 , canvasHeight - 3 );
+    bgcontext.lineTo( 3 , canvasHeight - 3 );
+    bgcontext.closePath();
+    bgcontext.lineWidth = 6;
+    bgcontext.stroke();
 
-    context.beginPath();
-    context.lineWidth = 3;
+    bgcontext.beginPath();
+    bgcontext.lineWidth = 3;
     // context.moveTo(0,0)
     // context.lineTo(canvasWidth,canvasHeight)
-    drawDashLine(context,0,0,canvasWidth,canvasHeight,12);
+    drawDashLine(bgcontext,0,0,canvasWidth,canvasHeight,12);
     // context.moveTo(canvasWidth,0)
     // context.lineTo(0,canvasHeight)
-    drawDashLine(context,canvasWidth,0,0,canvasHeight,12);
+    drawDashLine(bgcontext,canvasWidth,0,0,canvasHeight,12);
     // context.moveTo(canvasWidth/2,0)
     // context.lineTo(canvasWidth/2,canvasHeight)
-    drawDashLine(context,canvasWidth/2,0,canvasWidth/2,canvasHeight,12);
+    drawDashLine(bgcontext,canvasWidth/2,0,canvasWidth/2,canvasHeight,12);
     // context.moveTo(0,canvasHeight/2)
     // context.lineTo(canvasWidth,canvasHeight/2)
-    drawDashLine(context,0,canvasHeight/2,canvasWidth,canvasHeight/2,12);
+    drawDashLine(bgcontext,0,canvasHeight/2,canvasWidth,canvasHeight/2,12);
     // context.stroke()
 
-    context.restore();
+    bgcontext.restore();
 }
 
 function getBeveling(x,y)  
@@ -201,15 +218,72 @@ function drawDashLine(context,x1,y1,x2,y2,dashLen)
     context.stroke();  
 }  
 
-function bgcharacter(){
-    context.clearRect( 0 , 0 , canvasWidth, canvasHeight );
+function CreateCharacter(){
+    Ccontext.clearRect( 0 , 0 , canvasWidth, canvasHeight );
     drawGrid();
 
     var mycharacter = $('#inputCharacter').val();
     var fontsize = canvasWidth - 72;
     //设置字体样式
-    context.font = fontsize + "px " + fontname;
+    Ccontext.font = fontsize + "px " + fontname;
     //设置字体填充颜色
-    context.fillStyle = 'rgba(100,100,100,0.4)';
-    context.fillText(mycharacter, 36,canvasHeight-108);
+    Ccontext.fillStyle = 'rgba(100,100,100,0.4)';
+    Ccontext.fillText(mycharacter, 36,canvasHeight-108);
+}
+
+function CalculateScore(){
+    var TraceData = context.getImageData(0,0,canvas.width,canvas.height);
+    var CharacterData = Ccontext.getImageData(0,0,canvas.width,canvas.height);
+    // context.putImageData(TraceData,0,0);
+    var InNumber= 0;
+    var OutNumber=0; 
+    var TraceDataNumber =0;
+    var CharacterDataNumber =0;
+    for (var i=0;i<TraceData.data.length;i+=4)
+    {
+        if (CharacterData.data[i+3]>0) {
+            CharacterDataNumber++;
+        }
+        if(TraceData.data[i+3]>0&&CharacterData.data[i+3]>0){
+            InNumber++;
+        }
+        if(TraceData.data[i+3]>0&&CharacterData.data[i+3]==0){
+            OutNumber++;
+        }
+    }
+    var InRatio = 2.5-(InNumber+OutNumber)/CharacterDataNumber;
+    // alert(InNumber+" "+OutNumber+" "+TraceDataNumber+" "+CharacterDataNumber);
+    var score = Math.ceil(((InRatio*InNumber+(-1)*OutNumber)/CharacterDataNumber)*100);
+    var scoreText = "先临摹哦！";
+    if(score>100){
+        scoreText="100!<br>太棒啦！";
+        score = 100;
+    }else if(score<=0){
+        scoreText="<h1>先临摹!<br>莫捣乱~</h1>";
+    }else{
+        scoreText = score;
+    }
+    $('#ScoreText').html(scoreText);
+    $('#ScoreShow').modal('show');
+    return score;
+}
+$('#CalScoreBtn').click(function(){
+    var score = CalculateScore();
+    if(score>0){
+        $.ajax({
+         type: "GET",
+         url: "../doAction.php",
+         data: {act:'TraceRecord',tsCharacter:$('#inputCharacter').val(),score:score,fontfamily:fontname},
+         dataType: "json",
+         success: function(data){
+                    alert("success");
+                  }
+        });
+    }
+});
+
+$('#MyLineWidth').val(Math.round(maxLineWidth));
+
+function changeLineWidth(){
+    maxLineWidth = $('#MyLineWidth').val();
 }

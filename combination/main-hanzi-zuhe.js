@@ -14,6 +14,8 @@ var endx = 0;
 var endy = 0;
 var winflag = 0;
 
+var jieshi = 0;
+
 $(document).ready(function() {
     prepareForMobile();
     newgame();

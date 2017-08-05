@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <title>汉字·组合</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../logo.ico" media="screen" />
+    <link rel="Bookmark" href="../logo.ico" >
+<link rel="stylesheet" type="text/css" href="../css/csshake.min.css">
+
+    <link rel="stylesheet" href="../css/yunyoustyle.css">
+
+    <link rel="stylesheet" type="text/css" href="hanzi-zuhe.css" />
+    <script src="../js/jquery-3.1.1.min.js"></script>
+
+    <script src="../js/bootstrap.js"></script>
+
+<!--     <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script> -->
+    <script type="text/javascript" src="support-hanzi-zuhe.js"></script>
+    <script type="text/javascript" src="showanimation-hanzi-zuhe.js"></script>
+    <script type="text/javascript" src="main-hanzi-zuhe.js"></script>
+
+    <style type="text/css">
+        body {
+          padding-top: 60px;
+        }
+        .progress-bar{
+            background-color: rgba(0,0,0,0.8);
+            font-family: Microsoft YaHei;
+            color: #fff;
+            text-shadow: 0px 0px 5px #000;
+            box-shadow: 0px 0px 50px rgba(0,0,0,1);
+        }
+        .characterbtn{
+            font-weight: bold;
+            font-family: Microsoft YaHei;
+        }
+    </style>
+</head>
+<body>
+<!--     <nav id="navbar"></nav>
+    <script type="text/javascript">
+    $.get('../same/navbar.html',function(data){
+    $('#navbar').html(data);
+    }); 
+    </script> -->
+    <?php
+    include "../same/navbar.html";
+    ?>
+
+    <header id="head-container">
+    <div class="btn-group btn-group-justified">
+    <div class="btn-group" role="group">
+        <button type="button" onclick="javascript:newgame();" id="newgamebutton" class="btn btn-inverse btn-lg shake-slow" >开始组合</button>
+    </div>
+    <div class="btn-group" role="group">
+        <button type="button" onclick="javascript:$('#gamehelp').modal('show');" id="gamehelpbtn" class="btn btn-inverse btn-lg shake-slow" >操作帮助</button>
+    </div>
+    </div>
+        <h4>
+        <div class="progress" style="background-color:rgba(255,255,255,0.3); margin-bottom:0px;box-shadow: 0px 0px 50px rgba(0,0,0,1);">
+          <div id="score" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: 100%;">100%
+          </div>
+          <div id="cache" class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 100%;background-color:rgba(0,0,0,0.2);">
+              <span class="sr-only">100%</span>
+            </div>
+        </div>
+        </h4>
+    </header>
+<div class="game-container show-modal">
+
+    <div id="grid-container " class="grid-container container">
+        <div class="grid-cell" id="grid-cell-0-0"></div>
+        <div class="grid-cell" id="grid-cell-0-1"></div>
+        <div class="grid-cell" id="grid-cell-0-2"></div>
+        <div class="grid-cell" id="grid-cell-0-3"></div>
+
+        <div class="grid-cell" id="grid-cell-1-0"></div>
+        <div class="grid-cell" id="grid-cell-1-1"></div>
+        <div class="grid-cell" id="grid-cell-1-2"></div>
+        <div class="grid-cell" id="grid-cell-1-3"></div>
+
+        <div class="grid-cell" id="grid-cell-2-0"></div>
+        <div class="grid-cell" id="grid-cell-2-1"></div>
+        <div class="grid-cell" id="grid-cell-2-2"></div>
+        <div class="grid-cell" id="grid-cell-2-3"></div>
+
+        <div class="grid-cell" id="grid-cell-3-0"></div>
+        <div class="grid-cell" id="grid-cell-3-1"></div>
+        <div class="grid-cell" id="grid-cell-3-2"></div>
+        <div class="grid-cell" id="grid-cell-3-3"></div>
+    </div>
+    
+<!--     <div class="modal"  style="width:500px;margin:0 auto;">
+        <button class="btn btn-inverse btn-lg" onclick="javascript:newgame();">再来一次</button>
+    </div> -->
+</div>
+
+<div id="restartgame" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <button type="button" id="restartbtn" class="btn btn-inverse btn-lg" data-toggle="modal" data-target="#restartgame" onclick="javascript:newgame();">再来一次</button>
+</div>
+
+<div id="wingame" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="text-center">
+      <h1 id="winword" class="juzhong"></h1>
+    </div>
+</div>
+
+<div id="gamehelp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel" style="color: black;">操作帮助</h4>
+      </div>
+      <div class="modal-body" style="color: black;">
+      <table class="table table-hover table-bordered" style="background-color: #fff;">
+        <tr>
+            <td><div class="btn btn-default"><span class="characterbtn">W</span></div>
+            <div class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span></div></td>
+            <td>控制方块向上移动</td>
+        </tr>
+        <tr>
+            <td><div class="btn btn-default"><span class="characterbtn">S</span></div>
+            <div class="btn btn-default"><span class="glyphicon glyphicon-arrow-down"></span></div></td>
+            <td>控制方块向下移动</td>
+        </tr>
+        <tr>
+            <td><div class="btn btn-default"><span class="characterbtn">A</span></div>
+            <div class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></div></td>
+            <td>控制方块向左移动</td>
+        </tr>
+        <tr>
+            <td><div class="btn btn-default"><span class="characterbtn">D</span></div>
+            <div class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></div></td>
+            <td>控制方块向右移动</td>
+        </tr>
+        <tr>
+            <td><div class="btn btn-default"><span class="characterbtn">R</span></div></td>
+            <td>重新开始新游戏</td>
+        </tr>
+        <tr>
+            <td><div class="btn btn-default"><span class="characterbtn">↲</span></div></td>
+            <td>忽略提示</td>
+        </tr>
+      </table>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">我明白了</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /.modal -->
+
+</body>
+<script>
+window.onload=function(){
+document.getElementById("application").classList.add('active');
+}
+</script>
+<!--百度分享-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","renren","tqq","tieba","douban","bdhome","sqq","youdao","mail","copy","print"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"5","bdPos":"right","bdTop":"103.5"},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+</html>

@@ -1,10 +1,31 @@
+<?php 
+require_once '../include.php';
+if(!isLogin()){
+	$mes = '跳转至主页';
+	$url = '../index.php';
+	alertMes($mes,$url);
+}
+$userinfo=getUserInfo($_SESSION['uID']);
+$LearnRecordTitle="学习&middot;记录";
+
+@$LearnRecords = getLearnRecord();
+
+function JudgeScore($score){
+	if($score<60){
+		echo 'class="text-danger"';
+	}elseif($score>90){
+		echo 'class="text-success"';
+	}
+}
+
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh_cn">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>汉字检索</title>
+	<title><?php echo $LearnRecordTitle; ?></title>
 
 	<!-- Bootstrap -->
 
@@ -16,18 +37,15 @@
 	<link rel="stylesheet" href="../css/timelinestyle.css"> <!-- Resource style -->
 	<script src="../js/modernizr.js"></script> <!-- Modernizr -->
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
 	<script>
 		function ready(){
 			document.getElementById("user").classList.add('active');
 		}
 	</script>
-	<style type="text/css">
-		ol, ul {
-			list-style: none;
-		}
-	</style>
 </head>
-<body onLoad="ready()" data-spy="scroll" data-target="#navbar-user" data-offset="100" >
+<body onLoad="ready()">
 
 	<?php
 	include("../same/navbar.html");
@@ -36,131 +54,93 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="text-center col-md-12">
-				<h1 id="usercenter" class="text-center">学习&middot;记录</h1>
+				<h1 id="usercenter" class="text-center"><?php echo $LearnRecordTitle; ?></h1>
 			</div>
 		</div>
 		<hr>
 	</div>
 
 	<div class="container">
-		<div class="col-md-12 yunyou-bgblur yunyou-background">
-			<section class="cd-horizontal-timeline" style="font-family: '微软雅黑';color: #fff;font-weight: bolder;">
-				<div class="timeline">
-					<div class="events-wrapper ">
-						<div class="events  yunyou-bgblur">
-							<ol>
-								<li><a href="#0" data-date="16/01/2016">2016年1月16日</a></li>
-								<li><a href="#0" data-date="28/02/2016">2月28日</a></li>
-								<li><a href="#0" data-date="20/04/2016">4月20日</a></li>
-								<li><a href="#0" data-date="20/05/2016">5月20日</a></li>
-								<li><a href="#0" data-date="09/07/2016">7月09日</a></li>
-								<li><a href="#0" data-date="30/08/2016">8月30日</a></li>
-								<li><a href="#0" data-date="15/09/2016">9月15日</a></li>
-								<li><a href="#0" data-date="01/11/2016">11月01日</a></li>
-								<li><a href="#0" data-date="10/12/2016" class="selected">12月10日</a></li>
-							</ol>
 
-							<span class="filling-line" aria-hidden="true"></span>
-						</div> <!-- .events -->
-					</div> <!-- .events-wrapper -->
-					
-					<ul class="cd-timeline-navigation">
-						<li><a href="#0" class="prev inactive">Prev</a></li>
-						<li><a href="#0" class="next">Next</a></li>
-					</ul> <!-- .cd-timeline-navigation -->
-				</div> <!-- .timeline -->
+	<canvas id="myChart" width="400" height="400"></canvas>
 
-				<div class="events-content">
-					<ol>
-						<li class="selected" data-date="16/01/2016">
-							<em>2016年</em>
-							<em>1月16日</em>
-							<p>	
-								本次共学习了 2 篇书法作品，共 6 个书法字 
-							</p>
-						</li>
-
-						<li data-date="28/02/2016">
-							<em>2016年</em>
-							<em>2月28日</em>
-							<p>	
-								本次共学习了 2 篇书法作品，共 6 个书法字 
-							</p>
-						</li>
-
-						<li data-date="20/04/2016">
-							<em>2016年</em>
-							<em>4月20日</em>
-							<p>	
-								本次共学习了 2 篇书法作品，共 6 个书法字 
-							</p>
-						</li>
-
-						<li data-date="20/05/2016">
-							<em>2016年</em>
-							<em>5月20日</em>
-							<p>	
-								本次共学习了 2 篇书法作品，共 6 个书法字 
-							</p>
-						</li>
-
-						<li data-date="09/07/2016">
-							<em>2016年</em>
-							<em>7月09日</em>
-							<p>	
-								本次共学习了 2 篇书法作品，共 6 个书法字 
-							</p>
-						</li>
-
-						<li data-date="30/08/2016">
-							<em>2016年</em>
-							<em>8月30日</em>
-							<p>	
-								本次共学习了 2 篇书法作品，共 6 个书法字 
-							</p>
-						</li>
-
-						<li data-date="15/09/2016">
-							<em>2016年</em>
-							<em>9月15日</em>
-							<p>	
-								本次共学习了 2 篇书法作品，共 6 个书法字 
-							</p>
-						</li>
-
-						<li data-date="01/11/2016">
-							<em>2016年</em>
-							<em>11月01日</em>
-							<p>	
-								本次共学习了 2 篇书法作品，共 6 个书法字 
-							</p>
-						</li>
-
-						<li data-date="10/12/2016">
-							<em>2016年</em>
-							<em>12月10日</em>
-							<p>	
-								本次共学习了 2 篇书法作品，共 6 个书法字 
-							</p>
-							<div class="media">
-								<a class="media-left" href="#">
-									<img src="img/logo.png" alt="...">
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading">头</h4>
-									...
-								</div>
-							</div>
-
-						</li>
-					</ol>
-				</div> <!-- .events-content -->
-			</section>
+		<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading" style="font-size: large;background-color: rgba(0,0,0,0.8);color:#fff;">临摹记录</div>
+<!-- 		  <div class="panel-body">
+		    <p>...</p>
+		  </div> -->
+		<table class="table" style="font-family: Microsoft YaHei;color:#000;font-size: medium;">
+		<?php if($LearnRecords): ?>
+		<thead>
+			<tr>
+				<th>临摹字</th>
+				<th>字体</th>
+				<th>得分</th>
+				<th>时间</th>
+			</tr>
+		</thead>
+		  <?php foreach ($LearnRecords as $LearnRecord) :?>
+			<tr>
+				<td style="font-family: <?php echo $LearnRecord['fontfamily']; ?>"><?php echo $LearnRecord['tsCharacter']; ?></td>
+				<td style="font-family: <?php echo $LearnRecord['fontfamily']; ?>"><?php echo $LearnRecord['fontfamily']; ?></td>
+				<td <?php JudgeScore($LearnRecord['tsScore']);?> style="font-weight: bold;"><?php echo $LearnRecord['tsScore']; ?></td>
+				<td><?php echo $LearnRecord['tsTime']; ?></td>
+			</tr>
+		  <?php endforeach;?>
+		<?php else:?>
+			<tr>
+				<th colspan="4">
+					暂时还没有临摹记录哦！
+				</th>
+			</tr>
+		<?php endif;?>
+		</table>
 		</div>
 	</div>
 	<script src="../js/jquery-2.1.4.js"></script>
 	<script src="../js/jquery.mobile.custom.min.js"></script>
 	<script src="../js/main.js"></script> <!-- Resource jQuery -->
+
+		<script>
+		var ctx = document.getElementById("myChart");
+		var charLabels = [
+		<?php foreach ($LearnRecords as $LearnRecord) :?>
+			<?php echo '"'.$LearnRecord['tsCharacter'].'",'; ?>
+		<?php endforeach;?>
+		""];
+		var charScore = [
+		<?php foreach ($LearnRecords as $LearnRecord) :?>
+			<?php echo '"'.$LearnRecord['tsScore'].'",'; ?>
+		<?php endforeach;?>
+		""];
+		var myChart = new Chart(ctx, {
+		    type: 'line',
+		    data: {
+		        labels: charLabels,
+		        datasets: [{
+		            label: '学习记录',
+		            data: charScore,
+		            backgroundColor: [
+		                'rgba(22, 11, 5, 0.3)'
+		            ],
+		            borderColor: [
+		                'rgba(22,11,5,1)'
+		            ],
+		            borderWidth: 1
+		        }]
+		    },
+		    options: {
+		        scales: {
+		            yAxes: [{
+		                ticks: {
+		                    beginAtZero:true
+		                }
+		            }]
+		        }
+		    }
+		});
+		</script>
 
 	<?php
 	include("../same/footer.html");

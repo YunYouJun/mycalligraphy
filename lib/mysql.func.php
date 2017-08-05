@@ -23,6 +23,12 @@ function insert($table,$array){
 	mysql_query($sql);
 	return mysql_insert_id();
 }
+function myinsert($table,$array){
+	$keys=join(",",array_keys($array));
+	$vals="'".join("','",array_values($array))."'";
+	$sql="insert {$table}($keys) values({$vals})";
+	return mysql_query($sql);
+}
 //update imooc_admin set username='king' where id=1
 /**
  * 记录的更新操作
@@ -33,12 +39,12 @@ function insert($table,$array){
  */
 function update($table,$array,$where=null){
 	foreach($array as $key=>$val){
-		if($str==null){
+		if(@$str==null){
 			$sep="";
 		}else{
 			$sep=",";
 		}
-		$str.=$sep.$key."='".$val."'";
+		@$str.=$sep.$key."='".$val."'";
 	}
 		$sql="update {$table} set {$str} ".($where==null?null:" where ".$where);
 		$result=mysql_query($sql);

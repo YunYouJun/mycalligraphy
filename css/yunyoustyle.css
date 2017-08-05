@@ -8,6 +8,9 @@
     font-family:'经典繁毛楷';
     src:url('../fonts/jdfmk.ttf') format('truetype');  
     }*/
+    a:focus{
+      outline: none;
+    }
 
     body {
       background: #616161 url(../img/bg.jpg) center no-repeat;
@@ -207,4 +210,17 @@
   border-top: 0px;
   border-bottom: 0px;
   border-right: 2px rgba(255,255,255,0.5) solid; 
+}
+    .postinfo-block{
+      border-left: 1px rgba(255,255,255,0.5) solid; 
+/*      border-top: 1px rgba(255,255,255,0.5) solid; 
+border-bottom: 1px rgba(255,255,255,0.5) solid; */
+/*      border-right: 1px rgba(255,255,255,0.5) solid; */
+}
+
+.juzhong{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }

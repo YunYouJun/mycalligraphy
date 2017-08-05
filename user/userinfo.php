@@ -1,10 +1,19 @@
+<?php 
+require_once '../include.php';
+if(!isLogin()){
+	$mes = '跳转至主页';
+	$url = '../index.php';
+	alertMes($mes,$url);
+}
+$userinfo=getUserInfo($_SESSION['uID']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>汉字检索</title>
+<title>个人·设置</title>
 
 <!-- Bootstrap -->
 
@@ -49,40 +58,41 @@ document.getElementById("user").classList.add('active');
 				<h3>个人信息</h3>
 				<br>
 			</div>
-				<form class="form-horizontal" role="form" data-animation-effect="fadeIn">
+				<form class="form-horizontal form-group-lg" role="form" data-animation-effect="fadeIn" method="post" action="../doAction.php?act=updateUserinfo">
 				  <div class="form-group">
 				    <div class="input-group col-sm-offset-1 col-sm-10 yunyou-bgblur">
 				      <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span>&nbsp;用户名称</div>
-              		  <input type="text" class="form-control" id="username" placeholder="请填写您的用户名">
+              		  <input type="text" class="form-control logintext" id="username" name="username" placeholder="请填写您的用户名" value="<?php echo $userinfo['username']; ?>">
 				    </div>
 				  </div>
 				  <div class="form-group">
 		            <div class="input-group col-sm-offset-1 col-sm-10 yunyou-bgblur">
 		              <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;我的职业</div>
-		              <select class="form-control" id="profession">
-		                <option value="">职业</option>
-		                <option>学生</option>
-		                <option>教师</option>
-		                <option>书法工作者</option>
-		                <option>其他</option>
-		              </select>
+		              <input type="hidden" id="provalue" value="<?php echo $userinfo['profession']; ?>">
+		              <select class="form-control" id="profession" name="profession">
+		                <option value="0">职业</option>
+		                <option value="1" <?php if($userinfo['profession']==1) echo "selected=selected";?> >学生</option>
+		                <option value="2" <?php if($userinfo['profession']==2) echo "selected=selected";?> >教师</option>
+		                <option value="3" <?php if($userinfo['profession']==3) echo "selected=selected";?> >书法工作者</option>
+		                <option value="4" <?php if($userinfo['profession']==4) echo "selected=selected";?> >其他</option>
+		              </select> 
 		            </div>
 		          </div>
 		          <div class="form-group">
 		            <div class="input-group col-sm-offset-1 col-sm-10 yunyou-bgblur">
 		              <div class="input-group-addon"><span class="glyphicon glyphicon-edit"></span>&nbsp;偏爱类型</div>
-		              <select class="form-control" id="profession">
-		                <option value="">请选择您喜爱的书法类型</option>
-		                <option>行楷</option>
-		                <option>草书</option>
-		                <option>行书</option>
+		              <select class="form-control" id="favfont" name="favfont">
+		                <option value="0">请选择您喜爱的书法类型</option>
+		                <option value="1" <?php if($userinfo['favfont']==1) echo "selected=selected";?>>行楷</option>
+		                <option value="2" <?php if($userinfo['favfont']==2) echo "selected=selected";?>>行书</option>
+		                <option value="3" <?php if($userinfo['favfont']==3) echo "selected=selected";?>>草书</option>
 		              </select>
 		            </div>
 		          </div>
 		          <div class="form-group">
 		            <div class="input-group col-sm-offset-1 col-sm-10 yunyou-bgblur">
 		              <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>&nbsp;电子邮箱</div>
-		              <input type="email" class="form-control" id="email" placeholder="您的邮箱">
+		              <input type="email" class="form-control logintext" id="email" placeholder="您的邮箱" value="<?php echo $userinfo['email']; ?>" name="email">
 		            </div>
 		          </div>
 		            <div class="form-group">
@@ -98,23 +108,25 @@ document.getElementById("user").classList.add('active');
 				<h3 >修改密码</h3>
 				<br>
 			</div>
-				<form class="form-horizontal" role="form" data-animation-effect="fadeIn">
+				<form class="form-horizontal form-group-lg" role="form" data-animation-effect="fadeIn" action="../doAction.php?act=changePwd" method="post">
 				  <div class="form-group">
 				    <div class="input-group col-sm-offset-1 col-sm-10 yunyou-bgblur">
 				      <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>&nbsp;原始密码</div>
-              		  <input type="password" class="form-control" id="password" placeholder="请填写您的原始密码">
+              		  <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="请填写您的原始密码">
 				    </div>
 				  </div>
-				  <div class="form-group">
-				    <div class="input-group col-sm-offset-1 col-sm-10 yunyou-bgblur">
-				      <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>&nbsp;确认密码</div>
-              		  <input type="password" class="form-control" id="password1" placeholder="请填写您想要修改的密码">
-				    </div>
-				  </div>
-				  <div class="form-group">
+				  <div class="form-group passwordDiv">
 				    <div class="input-group col-sm-offset-1 col-sm-10 yunyou-bgblur">
 				      <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>&nbsp;修改密码</div>
-              		  <input type="password" class="form-control" id="password2" placeholder="请确认您想要修改的密码">
+              		  <input type="password" class="form-control" id="Changepassword" name="password" placeholder="请填写您想要修改的密码" oninput="changeCheck();">
+              		  <span class="form-control-feedback" aria-hidden="true"></span>
+				    </div>
+				  </div>
+				  <div class="form-group passwordDiv">
+				    <div class="input-group col-sm-offset-1 col-sm-10 yunyou-bgblur">
+				      <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>&nbsp;确认密码</div>
+              		  <input type="password" class="form-control" id="Changepassword2" placeholder="请确认您想要修改的密码" oninput="changeCheck();">
+              		  <span class="form-control-feedback" aria-hidden="true"></span>
 				    </div>
 				  </div>
 		            <div class="form-group">
@@ -133,7 +145,19 @@ document.getElementById("user").classList.add('active');
   <?php
 	include("../same/footer.html");
 	?>
-
+<script type="text/javascript">
+	function changeCheck(){
+		if($('#Changepassword').val()==$('#Changepassword2').val()){
+			$('.form-control-feedback').removeClass('glyphicon glyphicon-remove');
+			$('.form-control-feedback').addClass('glyphicon glyphicon-ok');
+			return true;
+		}else{
+			$('.form-control-feedback').addClass('glyphicon glyphicon-ok');
+			$('.form-control-feedback').addClass('glyphicon glyphicon-remove');
+			return false;
+		}
+	}
+</script>
 
 </body>
 </html>

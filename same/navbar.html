@@ -5,6 +5,10 @@ require_once '../include.php';
 .logintext {
     font-family: Microsoft YaHei;
 }
+.formBackStyle{
+    background-color: #fff;
+    color: #555;
+}
 </style>
 <nav class="navbar navbar-inverse navbar-fixed-top" style="font-size:large;">
     <div class="container-fluid">
@@ -31,17 +35,17 @@ require_once '../include.php';
                 </li> -->
                 <li class="dropdown" id="application"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" title="汉字应用">汉字应用<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu" style="font-size: large;">
-                        <li id="write"><a href="../handwriting/index.html" title="汉字书写">汉字书写</a></li>
-                        <li id="conversion"><a href="../conversion" title="书法转换">书法转换</a></li>
-                        <li><a href="../combination/index.html">趣味组合</a></li>
+                        <li id="write"><a href="../handwriting/index.php" title="汉字书写">汉字书写</a></li>
+                        <li id="conversion"><a href="../conversion/index.php" title="书法转换">书法转换</a></li>
+                        <li><a href="../combination/index.php">趣味组合</a></li>
                     </ul>
                 </li>
                 <li id="forum"><a href="../forum/forum.php" title="书法论坛">书法论坛</a></li>
 
             </ul>
-            <form class="navbar-form navbar-left" role="search" action="../main/character.php">
+            <form class="navbar-form navbar-left" role="search" action="../main/singlecharacter.php" method="get">
                 <div class="form-group">
-                    <input type="text" class="form-control navbar-inverse" placeholder="搜索文字" style="background-color:rgba(0,0,0,0.5);color: #fff;">
+                    <input type="text" maxlength="1" class="form-control navbar-inverse" name="keyword" placeholder="搜索汉字" style="background-color:rgba(0,0,0,0.5);color: #fff;">
                 </div>
                 <button type="submit" class="btn btn-inverse">搜索</button>
             </form>
@@ -57,7 +61,9 @@ require_once '../include.php';
             <li><a href="javascript:;">欢迎您，<?php echo $_SESSION['username']; ?>。</a></li>
                         <li class="dropdown" id="user"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" title="个人中心">个人中心<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu" style="font-size: large;">
-                                <li><a href="../user/learnrecord.php"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;学习记录</a></li>
+                                <li><a href="../user/mypost.php"><span class="glyphicon glyphicon-th-list"></span>&nbsp;我的帖子</a></li>
+                                <li><a href="../user/mycollect.php"><span class="glyphicon glyphicon-bookmark"></span>&nbsp;我的收藏</a></li>
+                                <li><a href="../user/learnrecord.php"><span class="glyphicon glyphicon-tag"></span>&nbsp;学习记录</a></li>
                                 <li><a href="../user/userinfo.php"><span class="glyphicon glyphicon-user"></span>&nbsp;个人设置</a></li>
                                 <li class="divider"></li>
                                 <li><a href="../doAction.php?act=userOut"><span class="glyphicon glyphicon-off"></span>&nbsp;注销账号</a></li>
@@ -83,21 +89,22 @@ require_once '../include.php';
                     <li id="registertab"><a href="#myregister" data-toggle="tab"><h3 class="modal-title" id="loginLabel" align="center"><strong>注册</strong></h3></a></li>
                 </ul>
             </div>
-            <!--登录模块-->
+
             <div id="myTabContent1" class="tab-content">
+                <!--登录模块-->
                 <div class="tab-pane fade in active" id="mylogin">
                     <div class="modal-body">
                         <form class="form-horizontal" id="logininfo" action="../doAction.php?act=login" method="post">
                             <div class="form-group">
                                 <div class="input-group col-sm-offset-1 col-sm-10">
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                                    <input type="username" class="form-control logintext" id="username" name="username" placeholder="请填写您的用户名">
+                                    <div class="input-group-addon formBackStyle"><span class="glyphicon glyphicon-user"></span></div>
+                                    <input type="username" class="form-control logintext formBackStyle" id="username" name="username" placeholder="请填写您的用户名">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group col-sm-offset-1 col-sm-10">
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                                    <input type="password" class="form-control logintext" id="password" name="password" placeholder="请填写您的密码">
+                                    <div class="input-group-addon formBackStyle"><span class="glyphicon glyphicon-lock"></span></div>
+                                    <input type="password" class="form-control logintext formBackStyle" id="loginpassword" name="password" placeholder="请填写您的密码">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -126,26 +133,26 @@ require_once '../include.php';
                         <form class="form-horizontal" id="registerinfo" action="../doAction.php?act=reg" method="post">
                             <div class="form-group">
                                 <div class="input-group col-sm-offset-1 col-sm-10">
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                                    <input type="username" class="form-control logintext" id="username" name="username" placeholder="请填写您的用户名">
+                                    <div class="input-group-addon formBackStyle"><span class="glyphicon glyphicon-user "></span></div>
+                                    <input type="username" class="form-control logintext formBackStyle" id="username" name="username" placeholder="请填写您的用户名">
+                                </div>
+                            </div>
+                            <div class="form-group passwordDiv">
+                                <div class="input-group col-sm-offset-1 col-sm-10">
+                                    <div class="input-group-addon formBackStyle"><span class="glyphicon glyphicon-lock"></span></div>
+                                    <input type="password" class="form-control logintext formBackStyle" id="password" name="password" placeholder="请填写您的密码" oninput="check();">
+                                </div>
+                            </div>
+                            <div class="form-group passwordDiv">
+                                <div class="input-group col-sm-offset-1 col-sm-10">
+                                    <div class="input-group-addon formBackStyle"><span class="glyphicon glyphicon-lock"></span></div>
+                                    <input type="password" class="form-control logintext formBackStyle" id="password2" placeholder="再次确认您的密码" oninput="check();">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group col-sm-offset-1 col-sm-10">
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                                    <input type="password" class="form-control logintext" id="password" name="password" placeholder="请填写您的密码">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group col-sm-offset-1 col-sm-10">
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                                    <input type="password" class="form-control logintext" id="password2" placeholder="再次确认您的密码">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group col-sm-offset-1 col-sm-10">
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
-                                    <select class="form-control logintext" id="profession" name="profession">
+                                    <div class="input-group-addon formBackStyle"><span class="glyphicon glyphicon-briefcase"></span></div>
+                                    <select class="form-control logintext formBackStyle" id="profession" name="profession">
                                         <option value="0">请选择您的职业</option>
                                         <option value="1">学生</option>
                                         <option value="2">教师</option>
@@ -156,8 +163,8 @@ require_once '../include.php';
                             </div>
                             <div class="form-group">
                                 <div class="input-group col-sm-offset-1 col-sm-10">
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-edit"></span></div>
-                                    <select class="form-control logintext" id="favfont" name="favfont">
+                                    <div class="input-group-addon formBackStyle"><span class="glyphicon glyphicon-edit"></span></div>
+                                    <select class="form-control logintext formBackStyle" id="favfont" name="favfont">
                                         <option value="0">请选择您最爱的书法类型</option>
                                         <option value="1">行楷</option>
                                         <option value="2">行书</option>
@@ -167,8 +174,8 @@ require_once '../include.php';
                             </div>
                             <div class="form-group">
                                 <div class="input-group col-sm-offset-1 col-sm-10">
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-                                    <input type="email" class="form-control logintext" id="email" name="email" placeholder="您的邮箱">
+                                    <div class="input-group-addon formBackStyle"><span class="glyphicon glyphicon-envelope"></span></div>
+                                    <input type="email" class="form-control logintext formBackStyle" id="email" name="email" placeholder="您的邮箱">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -186,3 +193,4 @@ require_once '../include.php';
         </div>
     </div>
 </div>
+<script type="text/javascript" src="../js/check.js"></script>

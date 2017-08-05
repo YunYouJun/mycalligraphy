@@ -36,6 +36,12 @@ function updateScore( score ,cache ){
     $('#score').attr('aria-valuenow',percent);
     $('#score').css('width',percent );
 
+    if (score==16 && jieshi == 0) {
+        $('#winword').html('艹，读音为ǎo，同“草”。用作偏旁。<br>俗称“草头”或“草字头”。');
+        $('#wingame').modal('show');
+        jieshi=1;
+    }
+
     if(score==512 && winflag == 0){
         $('#winword').html('这个字念xian哦，第一声<br><span class="texton">韱</span>：◎ 山韭，一种草。<br>◎ 古同“纤”，细小。');
         $('#wingame').modal('show');

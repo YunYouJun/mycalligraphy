@@ -7,6 +7,12 @@ if($act==="reg"){
 	$mes=login();
 }elseif($act==="userOut"){
 	$mes=userOut();
+}elseif($act==="updateUserinfo"){
+	$mes=updateUserinfo();
+}elseif($act==="changePwd"){
+	$mes=changePwd();
+}elseif($act=="TraceRecord"){
+	TraceRecord();
 }
 if($mes){
 	echo "<script type='text/javascript'>alert('".$mes."');</script>";

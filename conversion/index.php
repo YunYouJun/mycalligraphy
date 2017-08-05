@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>书法转换</title>
+  <title>书法·转换</title>
 
   <!-- Bootstrap -->
 
@@ -62,7 +62,7 @@
         <input type="text" class="form-control ui-input" id="yourtext" placeholder="输入想要转换的内容" style="background: rgba(0,0,0,0.3);font-size: x-large;">
         <!--             <span class="ui-return">↵</span> -->
       </div>
-      <div class="input-group col-md-1 text-center"><button type="submit" class="btn btn-inverse btn-lg yunyou-bgblur" id="sure">确定</button></div>
+      <div class="input-group col-md-1 text-center col-xs-12"><button type="submit" class="btn btn-inverse btn-lg yunyou-bgblur btn-block" id="sure">确定</button></div>
     </div>
 
     <div class="col-md-12">
@@ -141,10 +141,12 @@
         <button id="btnOnline" class="btn btn-inverse" type="button">
           <i class="glyphicon glyphicon-refresh"></i>开始转换
         </button>
-        <a id="btnDownload" class="btn btn-inverse" href="javascript:;">
+<!--         <a id="btnDownload" class="btn btn-inverse" href="javascript:;">
+          <i class="glyphicon glyphicon-save"></i>保存图片
+        </a> -->
+        <a id="imgdownload" class="btn btn-inverse" href="javascript:;">
           <i class="glyphicon glyphicon-save"></i>保存图片
         </a>
-        <a href="javascript:;" id="imgdownload">下载图片</a>
         <script type="text/javascript">
           var yourtext = $('#yourtext'); 
           var mycanvas=document.getElementById("mycanvas");
