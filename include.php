@@ -15,4 +15,4 @@ require_once 'string.func.php';
 require_once 'post.inc.php';
 require_once 'character.inc.php';
 $HandleAuthority = 5;
-connect();
+// connect();
